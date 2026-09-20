@@ -1,0 +1,8 @@
+heading: "How it works"
+steps:
+  - title: "Add one script tag"
+    description: "Paste a single script tag into your app. No backend, no build step."
+  - title: "Write the update in markdown"
+    description: "Draft your release note in plain markdown, the same way you write everything else."
+  - title: "Users see it next time they open your app"
+    description: "Shipnote surfaces the update inside your app, right where active users already are."

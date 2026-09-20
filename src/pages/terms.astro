@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+import Container from '../components/ui/Container.astro';
+import LegalBanner from '../components/ui/LegalBanner.astro';
+---
+
+<Base title="Terms of Service">
+  <section class="py-section">
+    <Container class="max-w-2xl">
+      <LegalBanner />
+
+      <h1 class="heading mt-6 text-3xl md:text-4xl">Terms of Service</h1>
+      <p class="mt-2 text-sm text-muted">Last updated: {site.legal.lastUpdated}</p>
+
+      <div class="mt-8 space-y-6 text-fg">
+        <p>
+          These terms govern your use of {site.name}, operated by {site.legal.companyName}. By joining the
+          waitlist or otherwise using this site, you agree to these terms.
+        </p>
+
+        <div>
+          <h2 class="heading text-xl">The waitlist</h2>
+          <p class="mt-2 text-muted">
+            Joining the waitlist reserves your place to hear about {site.name} when it becomes available.
+            Joining is not a purchase and does not guarantee access, pricing, or a launch date.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="heading text-xl">Changes</h2>
+          <p class="mt-2 text-muted">
+            We may update these terms, the product, or pricing before launch. We'll do our best to keep
+            waitlist members informed of material changes.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="heading text-xl">Contact</h2>
+          <p class="mt-2 text-muted">
+            Questions about these terms? Email{' '}
+            <a href={`mailto:${site.legal.contactEmail}`} class="text-accent hover:underline">
+              {site.legal.contactEmail}
+            </a>.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Base>

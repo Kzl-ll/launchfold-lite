@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+import Container from '../components/ui/Container.astro';
+import LegalBanner from '../components/ui/LegalBanner.astro';
+---
+
+<Base title="Privacy Policy">
+  <section class="py-section">
+    <Container class="max-w-2xl">
+      <LegalBanner />
+
+      <h1 class="heading mt-6 text-3xl md:text-4xl">Privacy Policy</h1>
+      <p class="mt-2 text-sm text-muted">Last updated: {site.legal.lastUpdated}</p>
+
+      <div class="mt-8 space-y-6 text-fg">
+        <p>
+          {site.legal.companyName} ("we", "us") operates {site.name}. This page explains what information we
+          collect when you visit this site and join the waitlist.
+        </p>
+
+        <div>
+          <h2 class="heading text-xl">What we collect</h2>
+          <p class="mt-2 text-muted">
+            When you join the waitlist, we collect the email address you submit through the signup form. We do
+            not use analytics or cookies on this site by default, and we do not collect any other personal
+            information.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="heading text-xl">How your email is handled</h2>
+          <p class="mt-2 text-muted">
+            Your email is submitted directly to our configured form provider and used only to notify you about
+            {site.name}. We do not sell or share your email with third parties.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="heading text-xl">Contact</h2>
+          <p class="mt-2 text-muted">
+            Questions about this policy? Email{' '}
+            <a href={`mailto:${site.legal.contactEmail}`} class="text-accent hover:underline">
+              {site.legal.contactEmail}
+            </a>.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Base>

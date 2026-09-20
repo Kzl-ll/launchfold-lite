@@ -1,0 +1,49 @@
+services:
+  dev:
+    build: .
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+
+  # one-off: docker compose --profile build run --rm build
+  # writes dist/ straight to the host (bind-mounted), same as running it locally.
+  build:
+    build: .
+    command: ["npm", "run", "build"]
+    profiles: ["build"]
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    env_file:
+      - path: .env
+        required: false
+
+  # one-off: docker compose --profile preview up preview
+  # builds then serves dist/ with `astro preview` for a local prod sanity check.
+  # (deploy target is static hosting - Cloudflare/Netlify/Vercel - not this container.)
+  preview:
+    build: .
+    # --force: the preview PID lock in .astro/preview.json is bind-mounted from
+    # the host, so a stale lock from a previous (differently-numbered) container
+    # can falsely collide with a PID in the new container's process namespace.
+    command: ["sh", "-c", "npm run build && rm -f .astro/preview.json && npm run preview -- --host 0.0.0.0 --force"]
+    profiles: ["preview"]
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    env_file:
+      - path: .env
+        required: false
+
+volumes:
+  node_modules:

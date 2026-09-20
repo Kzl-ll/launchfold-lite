@@ -1,0 +1,63 @@
+---
+import { site } from '../../site.config';
+import Button from './Button.astro';
+
+interface Props {
+  id: string;
+  buttonLabel: string;
+  source: 'hero' | 'cta';
+  class?: string;
+}
+
+const { id, buttonLabel, source, class: className = '' } = Astro.props;
+
+const endpoint = site.waitlist.endpoint;
+// FR-7.4: empty endpoint in dev -> render disabled + a note telling the developer to set it.
+const disabledInDev = import.meta.env.DEV && !endpoint;
+// FR-7.5: empty endpoint in a production build only reaches here if
+// LAUNCHFOLD_ALLOW_NO_WAITLIST=1 was set (site.config.ts fails the build otherwise).
+const openingSoon = import.meta.env.PROD && !endpoint;
+const redirectUrl = new URL(site.waitlist.successPath, site.url).toString();
+---
+
+{
+  openingSoon ? (
+    <p class:list={['rounded-brand border border-border bg-surface px-4 py-3 text-sm text-muted', className]}>
+      Waitlist opens soon.
+    </p>
+  ) : (
+    <div class={className}>
+      <form method="POST" action={endpoint || undefined} class="flex flex-col gap-3 sm:flex-row">
+        <div class="flex-1">
+          <label for={`${id}-email`} class="sr-only">
+            Email
+          </label>
+          <input
+            id={`${id}-email`}
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder="you@company.com"
+            disabled={disabledInDev}
+            class="w-full rounded-brand border border-border bg-surface px-4 py-2.5 text-fg disabled:cursor-not-allowed disabled:opacity-60"
+          />
+        </div>
+
+        {site.waitlist.accessKey && <input type="hidden" name="access_key" value={site.waitlist.accessKey} />}
+        <input type="hidden" name="redirect" value={redirectUrl} />
+        <input type="hidden" name="source" value={source} />
+
+        <div class="honeypot" aria-hidden="true">
+          <label for={`${id}-company`}>Company</label>
+          <input id={`${id}-company`} type="text" name="company" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <Button type="submit" disabled={disabledInDev}>
+          {buttonLabel}
+        </Button>
+      </form>
+      {disabledInDev && <p class="mt-2 text-sm text-muted">Set PUBLIC_WAITLIST_ENDPOINT to enable signups.</p>}
+    </div>
+  )
+}

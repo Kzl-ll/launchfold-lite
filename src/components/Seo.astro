@@ -1,0 +1,63 @@
+---
+import { site } from '../site.config';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+  pricing?: CollectionEntry<'pricing'>['data'];
+}
+
+const { title, description, noindex = false, pricing } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
+const ogImageUrl = new URL('/og.png', site.url).toString();
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: site.url,
+  sameAs: [site.links.x, site.links.github].filter((link) => link),
+};
+
+const softwareApplicationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: site.name,
+  description,
+  applicationCategory: 'BusinessApplication',
+  ...(pricing && !pricing.hidden
+    ? {
+        offers: {
+          '@type': 'Offer',
+          price: String(pricing.plan.earlyBirdPrice),
+          priceCurrency: pricing.plan.currency,
+        },
+      }
+    : {}),
+};
+---
+
+{noindex && <meta name="robots" content="noindex" />}
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<meta name="theme-color" content="#F7F8FA" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0B0D10" media="(prefers-color-scheme: dark)" />
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(softwareApplicationJsonLd)} />

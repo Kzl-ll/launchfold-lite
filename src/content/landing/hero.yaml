@@ -1,0 +1,19 @@
+audience: "Solo and two-person SaaS founders who ship updates every week"
+pain: "Users cancel over features you already shipped, because release notes live on a page nobody opens"
+outcome: "Every release reaches the active users who would otherwise cancel"
+headline: "Turn every release into a reason to stay"
+subheadline: "Shipnote shows your changelog inside your app, so the features you ship this week reach the users who would otherwise cancel."
+primaryCta:
+  label: "Join the early-bird list"
+  href: "/#waitlist"
+secondaryCta:
+  label: "See how it works"
+  href: "/#how-it-works"
+proof:
+  type: "waitlistCount"
+  text: "212 founders already on the list (demo)"
+visual:
+  type: "screenshot"
+  src: "shipnote-demo.svg"
+  alt: "Shipnote changelog widget open inside a demo SaaS dashboard, showing a list of recent updates"
+  caption: "Demo screenshot - Shipnote is a fictional product"

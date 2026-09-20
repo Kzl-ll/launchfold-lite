@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import BrowserFrame from '../ui/BrowserFrame.astro';
+import { resolveAsset } from '../../lib/images';
+
+interface Props {
+  demo?: CollectionEntry<'demo'>['data'];
+}
+
+const { demo } = Astro.props;
+const screenshotImage =
+  demo?.media.type === 'screenshot' ? resolveAsset(demo.media.src, 'landing/demo.yaml › media.src') : null;
+---
+
+{
+  demo && (
+    <section id="demo" class="py-section">
+      <Container>
+        <SectionHeading heading={demo.heading} subheading={demo.subheading} />
+
+        <figure class="reveal mt-10">
+          {demo.media.type === 'screenshot' && screenshotImage && (
+            <BrowserFrame class="parallax">
+              <Image src={screenshotImage} alt={demo.media.alt} class="scroll-scrub w-full" />
+            </BrowserFrame>
+          )}
+
+          {demo.media.type === 'video' && (
+            <video
+              controls
+              muted
+              playsinline
+              preload="metadata"
+              poster={demo.media.poster}
+              class="w-full rounded-brand border border-border"
+            >
+              <source src={demo.media.src} />
+            </video>
+          )}
+
+          {demo.media.type === 'embed' && (
+            <iframe
+              src={demo.media.src}
+              title={demo.media.alt}
+              loading="lazy"
+              class="aspect-video w-full rounded-brand border border-border"
+            />
+          )}
+
+          {demo.media.caption && <figcaption class="mt-2 text-center text-xs text-muted">{demo.media.caption}</figcaption>}
+        </figure>
+      </Container>
+    </section>
+  )
+}

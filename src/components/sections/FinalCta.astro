@@ -1,0 +1,82 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Container from '../ui/Container.astro';
+import WaitlistForm from '../ui/WaitlistForm.astro';
+
+interface Props {
+  cta: CollectionEntry<'cta'>['data'];
+  pricing?: CollectionEntry<'pricing'>['data'];
+}
+
+const { cta, pricing } = Astro.props;
+
+function formatPrice(amount: number, currency: string) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0 }).format(amount);
+}
+
+const showPricing = Boolean(pricing && !pricing.hidden);
+const plan = showPricing ? pricing!.plan : null;
+const earlyBird = plan ? formatPrice(plan.earlyBirdPrice, plan.currency) : null;
+const regular = plan ? formatPrice(plan.regularPrice, plan.currency) : null;
+---
+
+<!--
+  Ledger direction: pricing merges into the closing CTA as a single "poster"
+  statement, not a separate section. This band is intentionally always-dark
+  regardless of the active theme (fixed hex, not the --bg/--fg tokens) -
+  every color pair below reuses values already verified against WCAG AA in
+  Base.astro's dark mode (dark text-on-bg 16.18:1, dark accent-on-bg 6.21:1).
+-->
+<section id="waitlist" class="py-section" style="background:#14130F; color:#F2EFE7;">
+  <Container class="reveal max-w-2xl text-center">
+    <div class="scroll-scrub" data-scale-from="0.94" data-scale-to="1">
+      {
+        showPricing && pricing && (
+          <p class="label text-sm" style="color:#E0785F;">
+            {pricing.plan.name} · {pricing.scarcity.value}
+          </p>
+        )
+      }
+      <h2 class="heading mt-3 text-3xl md:text-4xl">{cta.heading}</h2>
+      {cta.subheading && <p class="mt-3 text-lg" style="color:#A8A296;">{cta.subheading}</p>}
+
+      {
+        showPricing && plan && (
+          <div class="mt-8 border-t pt-8" style="border-color:#35322A;">
+            <p class="heading text-4xl">
+              {earlyBird}
+              <span class="text-lg" style="color:#A8A296;">
+                /{plan.period}
+              </span>{' '}
+              <span aria-hidden="true" class="text-lg line-through" style="color:#A8A296;">
+                {regular}
+              </span>
+              <span class="sr-only">
+                Regular price {regular}/{plan.period}
+              </span>
+            </p>
+            {pricing?.note && (
+              <p class="mt-2 text-sm" style="color:#A8A296;">
+                {pricing.note}
+              </p>
+            )}
+            <ul class="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-left text-sm">
+              {plan.perks.map((perk) => (
+                <li class="flex items-center gap-2">
+                  <span class="font-mono" style="color:#E0785F;" aria-hidden="true">
+                    +
+                  </span>
+                  {perk}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      <WaitlistForm id="cta" buttonLabel={cta.button.label} source="cta" class="mx-auto mt-8 max-w-md" />
+
+      <p class="mt-4 text-sm" style="color:#A8A296;">{cta.reassurance}</p>
+    </div>
+  </Container>
+</section>

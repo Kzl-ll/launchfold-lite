@@ -1,0 +1,16 @@
+heading: "Early-bird pricing"
+plan:
+  name: "Early-bird"
+  earlyBirdPrice: 5
+  regularPrice: 12
+  currency: "USD"
+  period: "month"
+  perks:
+    - "Unlimited updates"
+    - "Custom brand colors"
+    - "Email digest for inactive users"
+    - "Price locked for life"
+scarcity:
+  type: "spots"
+  value: "First 100 founders"
+note: "Price locked for life, even after the early-bird window closes."

@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Props {
+  howItWorks: CollectionEntry<'howItWorks'>['data'];
+}
+
+const { howItWorks } = Astro.props;
+---
+
+<section id="how-it-works" class="py-section">
+  <Container>
+    <SectionHeading heading={howItWorks.heading} />
+
+    <ol class="mt-10 grid gap-8 md:grid-cols-3">
+      {
+        howItWorks.steps.map((step, index) => (
+          <li class="reveal flex flex-col gap-3 border-t border-border pt-4">
+            <span
+              class="scroll-scrub label text-sm text-accent"
+              data-scale-from="0.4"
+              data-scale-to="1"
+              style="display: inline-block;"
+            >
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 class="heading text-lg text-fg">{step.title}</h3>
+            <p class="text-muted">{step.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </Container>
+</section>

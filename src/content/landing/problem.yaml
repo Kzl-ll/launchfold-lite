@@ -1,0 +1,9 @@
+heading: "Shipping isn't the hard part. Being noticed is."
+pains:
+  - "Release notes live on a page nobody opens"
+  - "Users cancel over features you already shipped"
+  - "Writing announcements eats your shipping day"
+outcomes:
+  - "Updates appear where your users already work"
+  - "Fewer cancellations over features they missed"
+  - "Write once in markdown, publish everywhere in one click"

@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['overflow-hidden rounded-brand border border-border bg-surface shadow-sm', className]}>
+  <div class="flex items-center gap-2 border-b border-border bg-bg px-4 py-2.5">
+    <span class="scroll-scrub h-2.5 w-2.5 rounded-full bg-border" data-scale-from="0.3" data-scale-to="1" aria-hidden="true"></span>
+    <span class="scroll-scrub h-2.5 w-2.5 rounded-full bg-border" data-scale-from="0.3" data-scale-to="1" aria-hidden="true"></span>
+    <span class="scroll-scrub h-2.5 w-2.5 rounded-full bg-border" data-scale-from="0.3" data-scale-to="1" aria-hidden="true"></span>
+  </div>
+  <slot />
+</div>

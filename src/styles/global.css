@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --radius-brand: var(--radius);
+  --spacing-section: clamp(3rem, 8vw, 6rem);
+  --font-serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+
+/* "Ledger" direction: print-editorial, near-monochrome, one oxide accent.
+   Light is the default. --brand-accent / --brand-accent-dark / --radius come
+   from an inline style on <html> (Base.astro), sourced from site.config.ts.
+   --accent itself is only ever set here, never inline, so theme selectors
+   below can override it without fighting inline-style specificity. */
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --fg: #14130f;
+  --muted: #5a564c;
+  --border: #ddd8cc;
+  --border-strong: #14130f;
+  --accent: var(--brand-accent);
+  --accent-fg: #ffffff;
+  color-scheme: light;
+}
+
+/* No-JS / before-hydration fallback: honor system dark preference unless the
+   user has explicitly chosen light. The inline script in Base.astro sets
+   data-theme as soon as it can, but this covers the gap and JS-disabled case. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14130f;
+    --surface: #1c1a16;
+    --fg: #f2efe7;
+    --muted: #a8a296;
+    --border: #35322a;
+    --border-strong: #f2efe7;
+    --accent: var(--brand-accent-dark);
+    --accent-fg: #14130f;
+    color-scheme: dark;
+  }
+}
+
+/* Explicit user choice, set by the theme toggle script. Element+attribute
+   selector so it always wins over the prefers-color-scheme fallback above. */
+html[data-theme="dark"] {
+  --bg: #14130f;
+  --surface: #1c1a16;
+  --fg: #f2efe7;
+  --muted: #a8a296;
+  --border: #35322a;
+  --border-strong: #f2efe7;
+  --accent: var(--brand-accent-dark);
+  --accent-fg: #14130f;
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --fg: #14130f;
+  --muted: #5a564c;
+  --border: #ddd8cc;
+  --border-strong: #14130f;
+  --accent: var(--brand-accent);
+  --accent-fg: #ffffff;
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+/* Type scale: display headings set in the serif stack (500wt, tight
+   tracking) per the brief; body/UI stays system sans. */
+.heading {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.label {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rule-strong {
+  border-color: var(--border-strong) !important;
+  border-width: 2px !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  transform: translateY(-150%);
+  background-color: var(--color-surface);
+  color: var(--color-fg);
+  padding: 0.625rem 1rem;
+  border: 1px solid var(--color-border);
+  transition: transform 200ms;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Honeypot: hidden from sighted users AND assistive tech (aria-hidden handles
+   the latter). Off-screen rather than display:none so bots that skip
+   display-checked fields still fall for it. 1px+clip avoids affecting
+   document scrollWidth. */
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scroll reveal: opacity + translateY only (GPU-composited, no layout/CLS
+   impact), toggled by the tiny IntersectionObserver script in index.astro -
+   this is the one deliberate exception to "theme toggle and mobile nav only"
+   for inline scripts, kept because animation-timeline (pure CSS, no JS) isn't
+   supported everywhere yet and silently shows nothing to animate instead.
+   Excluded from the hero visual on purpose: it's the LCP candidate and must
+   paint immediately, not fade in. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Continuous scroll-scrub: an image's scale tracks its own scroll position,
+   driven by the passive scroll + rAF-throttled script in index.astro (tried
+   pure-CSS animation-timeline first - verified broken for scale-only
+   transforms on <img> elements in real testing, not just a support gap, so
+   this is the reliable fallback). The listener is { passive: true } and never
+   calls preventDefault, so it never blocks native scrolling the way
+   smooth-scroll-hijacking libraries do - it only reads position and writes
+   one style per element per frame. Default state (no JS, or motion reduced)
+   is a plain scale(1) so nothing looks stuck mid-zoom. Wrap the image in an
+   overflow-hidden container so the zoom never spills past its frame. */
+.scroll-scrub {
+  transform: scale(1);
+}
+
+/* Parallax drift: a small counter-offset relative to how far the element's
+   center is from mid-viewport, driven by the same passive-scroll script as
+   .scroll-scrub (same performance profile). Kept to a small max offset so it
+   never visually overlaps neighboring content. */
+.parallax {
+  transform: translateY(0);
+}

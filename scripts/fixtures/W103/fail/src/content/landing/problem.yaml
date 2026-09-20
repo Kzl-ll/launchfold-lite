@@ -1,0 +1,7 @@
+heading: "Problem"
+pains:
+  - "Release notes live on a page nobody opens"
+  - "Users cancel over features you already shipped"
+outcomes:
+  - "Release notes live on a page nobody opens"
+  - "Fewer cancellations over missing features"

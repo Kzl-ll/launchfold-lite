@@ -1,0 +1,30 @@
+<svg width="960" height="600" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="shipnote-demo-title">
+  <title id="shipnote-demo-title">Shipnote changelog widget mockup</title>
+  <rect width="960" height="600" fill="#FBFAF7" />
+  <rect x="40" y="40" width="880" height="520" fill="#FFFFFF" stroke="#DDD8CC" stroke-width="2" />
+
+  <rect x="88" y="80" width="16" height="16" fill="#8C2F1E" />
+  <rect x="120" y="76" width="180" height="14" fill="#14130F" />
+  <rect x="120" y="98" width="120" height="10" fill="#A8A296" />
+
+  <!-- entry 1 -->
+  <rect x="72" y="150" width="8" height="72" fill="#8C2F1E" />
+  <rect x="100" y="156" width="240" height="14" fill="#14130F" />
+  <rect x="100" y="180" width="400" height="10" fill="#5A564C" />
+  <rect x="100" y="198" width="320" height="10" fill="#5A564C" />
+
+  <!-- entry 2 -->
+  <rect x="72" y="252" width="8" height="72" fill="#14130F" />
+  <rect x="100" y="258" width="200" height="14" fill="#14130F" />
+  <rect x="100" y="282" width="440" height="10" fill="#5A564C" />
+  <rect x="100" y="300" width="280" height="10" fill="#5A564C" />
+
+  <!-- entry 3 -->
+  <rect x="72" y="354" width="8" height="72" fill="#8C2F1E" />
+  <rect x="100" y="360" width="260" height="14" fill="#14130F" />
+  <rect x="100" y="384" width="380" height="10" fill="#5A564C" />
+  <rect x="100" y="402" width="300" height="10" fill="#5A564C" />
+
+  <rect x="720" y="150" width="160" height="40" fill="#8C2F1E" />
+  <rect x="748" y="164" width="104" height="12" fill="#FFFFFF" />
+</svg>

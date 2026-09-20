@@ -1,0 +1,8 @@
+heading: "FAQ"
+items:
+  - question: "Will it slow down my app?"
+    answer: "No, it loads asynchronously."
+    objection: "trust"
+  - question: "What happens after beta?"
+    answer: "The price stays locked."
+    objection: "price"

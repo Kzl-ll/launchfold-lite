@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/modernist-3a08dded-5c80-42c9-8b5e-78e80e4b7261/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f0eee9;font-family:Archivo,system-ui,sans-serif}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:420px}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.18);overflow:hidden}
+.dv-opt:target .dv-oid{background:#ec3013;color:#fff}
+.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.sec{border-bottom:2px dashed #cfcfcf;padding:13px}
+.lbl{display:inline-block;font:600 8.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;background:#1a1a1a;color:#fff;padding:3px 5px;margin-bottom:9px}
+.ph{background:repeating-linear-gradient(135deg,#efefef 0 6px,#e5e5e5 6px 12px);border:1px solid #c4c4c4;display:flex;align-items:center;justify-content:center;font:600 8.5px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.05em;color:#777;text-align:center;padding:6px}
+.ln{height:7px;background:#dcdcdc}
+.h1{height:16px;background:#9a9a9a}
+.h2{height:11px;background:#b6b6b6}
+.eb{height:6px;width:40%;background:#c9c9c9}
+.fld{height:34px;border:1px solid #8a8a8a;display:flex;align-items:center;padding:0 8px;font:600 8.5px ui-monospace,Menlo,monospace;color:#8a8a8a}
+.btnw{height:34px;border:2px solid #1a1a1a;display:flex;align-items:center;padding:0 10px;font:700 9px ui-monospace,Menlo,monospace;color:#1a1a1a;white-space:nowrap}
+.ann{font:400 13px/1.3 Caveat,cursive;color:#ec3013;margin:8px 0 0}
+.ann b{font-weight:600}
+.col{display:flex;flex-direction:column;gap:7px}
+.row{display:flex;gap:8px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mini{font:600 8px ui-monospace,Menlo,monospace;color:#8a8a8a;letter-spacing:.04em}
+.notes{padding:22px 24px;font:13px/1.55 Archivo,system-ui,sans-serif;color:#2a2a2a;max-width:660px}
+.notes h3{font:700 11px ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 7px}
+.notes h3:first-child{margin-top:0}
+.notes ul{margin:0;padding-left:17px}
+.notes li{margin:0 0 5px}
+.notes .flag{color:#ec3013}
+.chk{display:flex;gap:6px;align-items:center;font:600 8px ui-monospace,Menlo,monospace;color:#8a8a8a;letter-spacing:.04em}
+.acc{border:1px solid #bdbdbd;padding:8px 9px;display:flex;justify-content:space-between;align-items:center;font:600 8px ui-monospace,Menlo,monospace;color:#8a8a8a}
+</style></helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Shipnote waitlist page — research notes, page skeleton, hero + pricing directions</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1r">
+<div class="dv-olabel"><a class="dv-oid" href="#1r">1r</a>Research first: what to borrow, what to drop, what conflicts with the constraints</div>
+<div class="dv-card" style="width:700px">
+<div class="notes">
+<p style="margin:0 0 14px;color:#777"><b>Note:</b> the Modernist brand layer (color, type, components) is intentionally withheld here — these are structure-only wireframes. Brand gets applied once a hero and pricing direction are picked.</p>
+<h3>Patterns worth borrowing</h3>
+<ul>
+<li><b>One specific, outcome-driven headline + one field above the fold.</b> The recurring shape across 2025–26 waitlist pages: outcome headline, one-line qualifier ("for indie SaaS teams"), email field, proof line — nothing else competing.</li>
+<li><b>Trust above the fold, not in the footer.</b> Pre-launch pages that convert put the credibility cue inside the hero block, next to the field.</li>
+<li><b>Real product screenshot, not illustration.</b> The screenshot is the primary trust signal pre-launch; the demo section carries most of the persuasion weight.</li>
+<li><b>Adjacent proof instead of fake testimonials:</b> live waitlist count, founder credential ("built by the person who shipped X"), integration/stack logos, "launching on Product Hunt [month]". Small honest numbers beat nothing.</li>
+<li><b>Founder note as the proof section.</b> With no customers, the human is the trust object — photo, 2–3 sentences, name/role.</li>
+<li><b>CTA repeats at natural decision points</b>, not on a fixed cadence: hero → after demo/how-it-works → after pricing → final CTA.</li>
+<li><b>Objections as FAQ copy.</b> Pre-launch FAQ is really risk-handling: when does it ship, what happens to my email, what if I hate it, is the price locked.</li>
+</ul>
+<h3>Patterns that read dated or hurt here</h3>
+<ul>
+<li>Nav-free "velvet rope" splash pages — fine for a one-field teaser, wrong for a page that has to carry pricing, FAQ and a founder note.</li>
+<li>Three-tier pricing comparison pre-launch. Nothing to compare; it invites a decision the visitor can't make yet.</li>
+<li>Uniform 3-column feature grids and feature dumping; bento grids as decoration.</li>
+<li>Gradient-and-animation heroes, counters, marquee logo bars, scroll-triggered reveals.</li>
+<li>Invented testimonials, fake avatar rows, "trusted by 10,000 teams" before launch.</li>
+</ul>
+<h3 class="flag">Research that conflicts with your constraints — flagged, not silently dropped</h3>
+<ul>
+<li><span class="flag">Interactive/animated hero demo</span> (the strongest 2026 hero pattern) needs JS. Substitute: one static annotated screenshot, plus an optional muted looping <code>&lt;video&gt;</code> with <code>poster</code> in the Demo section — no JS, degrades to an image.</li>
+<li><span class="flag">Live waitlist counter</span> can't be client-side. Substitute: server-rendered or hand-updated number in the proof line, dated ("412 signed up · updated weekly") so it can't look abandoned.</li>
+<li><span class="flag">Conversational / multi-step capture</span> and referral-on-confirmation loops are JS-dependent. Substitute: single email field posting to a real endpoint, referral ask on the server-rendered thank-you page.</li>
+<li><span class="flag">FAQ accordion</span> — use native <code>&lt;details&gt;/&lt;summary&gt;</code>. Zero JS, keyboard-accessible, degrades to fully expanded.</li>
+<li><span class="flag">Sticky CTA bar on scroll</span> conflicts with "one primary CTA in the viewport". Dropped; CTA repetition instead.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Full page skeleton, mobile-first at 320px — the reference structure and rhythm</div>
+<div class="dv-card" style="width:320px">
+<div class="sec" style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+<div class="ph" style="width:84px;height:22px">LOGO</div>
+<div class="row" style="gap:6px"><div class="ph" style="width:26px;height:22px">☾</div><div class="ph" style="width:26px;height:22px">☰</div></div>
+</div>
+<div class="sec">
+<div class="lbl">Hero</div>
+<div class="col">
+<div class="eb"></div>
+<div class="h1"></div><div class="h1" style="width:72%"></div>
+<div class="ln"></div><div class="ln" style="width:80%"></div>
+<div class="fld">EMAIL — type=email, required</div>
+<div class="btnw" style="justify-content:flex-start">JOIN THE WAITLIST</div>
+<div class="ln" style="width:70%;height:6px"></div>
+<div class="mini">secondary link (text only)</div>
+<div class="ph" style="height:150px">PRODUCT VISUAL<br>widget screenshot</div>
+</div>
+<p class="ann">Form stacks at 320 (field over button, both full width, 44px min height). Proof line sits <b>under</b> the button — reassurance after the ask. Visual starts at the fold line, cropped, so it pulls the scroll.</p>
+</div>
+<div class="sec">
+<div class="lbl">Problem / Outcome</div>
+<div class="g2" style="gap:12px">
+<div class="col"><div class="mini">BEFORE</div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+<div class="col"><div class="mini">AFTER</div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+</div>
+<p class="ann">Two columns even at 320 — the contrast <i>is</i> the content. 3 short items each, one line apiece, no icons.</p>
+</div>
+<div class="sec">
+<div class="lbl">Demo</div>
+<div class="ph" style="height:170px">SCREENSHOT or muted loop video<br>(poster = same screenshot)</div>
+<p class="ann">One visual, one caption. Widest element on the page — full-bleed to the card edge on mobile.</p>
+</div>
+<div class="sec">
+<div class="lbl">How it works — 3 steps</div>
+<div class="col" style="gap:10px">
+<div class="row" style="align-items:flex-start"><div class="ph" style="width:24px;height:24px;flex:none">1</div><div class="col" style="flex:1"><div class="h2" style="width:60%"></div><div class="ln"></div></div></div>
+<div class="row" style="align-items:flex-start"><div class="ph" style="width:24px;height:24px;flex:none">2</div><div class="col" style="flex:1"><div class="h2" style="width:70%"></div><div class="ln"></div></div></div>
+<div class="row" style="align-items:flex-start"><div class="ph" style="width:24px;height:24px;flex:none">3</div><div class="col" style="flex:1"><div class="h2" style="width:55%"></div><div class="ln"></div></div></div>
+</div>
+<p class="ann">Numbered rows on mobile, 3 equal cells from ~720px. No connector line — it breaks when it wraps.</p>
+</div>
+<div class="sec">
+<div class="lbl">Founder note</div>
+<div class="row" style="align-items:flex-start"><div class="ph" style="width:56px;height:56px;flex:none;border-radius:0">PHOTO</div>
+<div class="col" style="flex:1"><div class="ln"></div><div class="ln"></div><div class="ln" style="width:65%"></div><div class="mini">NAME · ROLE</div></div></div>
+<p class="ann">Photo left, quote right — reads as a person, not a testimonial card. Only place a face appears.</p>
+</div>
+<div class="sec">
+<div class="lbl">Pricing — one early-bird plan</div>
+<div class="col" style="border:2px solid #1a1a1a;padding:10px;gap:7px">
+<div class="mini">EARLY BIRD</div>
+<div class="h1" style="width:50%"></div>
+<div class="ln" style="width:70%"></div>
+<div class="chk mini">✓ included item</div><div class="chk mini">✓ included item</div><div class="chk mini">✓ included item</div>
+<div class="btnw" style="justify-content:flex-start">CLAIM EARLY PRICE</div>
+</div>
+<p class="ann">See <a class="dv-oid" href="#1f">1f</a> / <a class="dv-oid" href="#1g">1g</a> / <a class="dv-oid" href="#1h">1h</a> for the three ways to present this.</p>
+</div>
+<div class="sec">
+<div class="lbl">FAQ — native details/summary</div>
+<div class="col" style="gap:6px">
+<div class="acc"><span>WHEN DOES IT SHIP?</span><span>+</span></div>
+<div class="acc" style="flex-direction:column;align-items:stretch;gap:7px"><div style="display:flex;justify-content:space-between"><span>IS THE PRICE LOCKED?</span><span>–</span></div><div class="ln"></div><div class="ln" style="width:80%"></div></div>
+<div class="acc"><span>WHAT HAPPENS TO MY EMAIL?</span><span>+</span></div>
+<div class="acc"><span>DOES IT WORK WITH MY STACK?</span><span>+</span></div>
+</div>
+<p class="ann">4+ items, first one open. Full-width tap rows, chevron/± right. No CTA inside FAQ — keeps one primary per viewport.</p>
+</div>
+<div class="sec">
+<div class="lbl">Final CTA</div>
+<div class="col">
+<div class="h1" style="width:80%"></div>
+<div class="fld">EMAIL</div>
+<div class="btnw" style="justify-content:flex-start">JOIN THE WAITLIST</div>
+<div class="ln" style="width:60%;height:6px"></div>
+</div>
+<p class="ann">Same form, same label as the hero. Repetition, not a new offer.</p>
+</div>
+<div class="sec" style="border-bottom:none">
+<div class="lbl">Footer</div>
+<div class="row" style="justify-content:space-between"><div class="ph" style="width:70px;height:18px">LOGO</div><div class="col" style="gap:5px;align-items:flex-end"><div class="ln" style="width:60px"></div><div class="ln" style="width:44px"></div></div></div>
+<p class="ann">Legal, contact, theme toggle duplicate. Nothing that competes.</p>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Same structure at desktop width — column behaviour and where the CTA repeats</div>
+<div class="dv-card" style="width:620px">
+<div class="sec" style="display:flex;align-items:center;justify-content:space-between">
+<div class="ph" style="width:90px;height:22px">LOGO</div>
+<div class="row" style="gap:10px;align-items:center"><div class="ln" style="width:44px"></div><div class="ln" style="width:38px"></div><div class="ln" style="width:30px"></div><div class="ph" style="width:24px;height:22px">☾</div><div class="btnw" style="height:26px;font-size:8px">JOIN</div></div>
+</div>
+<div class="sec">
+<div class="lbl">Hero — see 1c / 1d / 1e</div>
+<div class="row" style="gap:16px"><div class="col" style="flex:1.05"><div class="eb"></div><div class="h1"></div><div class="h1" style="width:70%"></div><div class="ln"></div><div class="ln" style="width:75%"></div><div class="row" style="gap:6px"><div class="fld" style="flex:1">EMAIL</div><div class="btnw">JOIN WAITLIST</div></div><div class="ln" style="width:62%;height:6px"></div></div>
+<div class="ph" style="flex:1;min-height:170px">PRODUCT VISUAL</div></div>
+<p class="ann">Form goes inline from ~560px: field flexes, button auto-width, label flush left inside it.</p>
+</div>
+<div class="sec"><div class="lbl">Problem / Outcome</div><div class="g2" style="gap:20px"><div class="col"><div class="mini">BEFORE — 3 ITEMS</div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div><div class="col"><div class="mini">AFTER — 3 ITEMS</div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div></div></div>
+<div class="sec"><div class="lbl">Demo</div><div class="ph" style="height:200px">SCREENSHOT / VIDEO — widest element on the page</div></div>
+<div class="sec"><div class="lbl">How it works</div><div class="g3"><div class="col"><div class="ph" style="width:22px;height:22px">1</div><div class="h2"></div><div class="ln"></div></div><div class="col"><div class="ph" style="width:22px;height:22px">2</div><div class="h2"></div><div class="ln"></div></div><div class="col"><div class="ph" style="width:22px;height:22px">3</div><div class="h2"></div><div class="ln"></div></div></div>
+<p class="ann">CTA repeat #2 lives at the end of this section, or at the top of Pricing — never both.</p></div>
+<div class="sec"><div class="lbl">Founder note</div><div class="row" style="gap:14px;align-items:flex-start"><div class="ph" style="width:80px;height:80px;flex:none">PHOTO</div><div class="col" style="flex:1"><div class="h2" style="width:90%"></div><div class="h2" style="width:80%"></div><div class="ln" style="width:50%"></div><div class="mini">NAME · ROLE</div></div></div>
+<p class="ann">Max ~46rem measure — don't let the quote run the full grid.</p></div>
+<div class="sec"><div class="lbl">Pricing — single plan, centred column not full width</div><div style="display:flex;justify-content:flex-start"><div class="col" style="width:58%;border:2px solid #1a1a1a;padding:12px"><div class="mini">EARLY BIRD</div><div class="h1" style="width:45%"></div><div class="ln" style="width:70%"></div><div class="btnw" style="justify-content:flex-start">CLAIM EARLY PRICE</div></div></div></div>
+<div class="sec"><div class="lbl">FAQ</div><div class="col" style="gap:6px"><div class="acc"><span>ITEM</span><span>+</span></div><div class="acc"><span>ITEM</span><span>+</span></div><div class="acc"><span>ITEM</span><span>+</span></div><div class="acc"><span>ITEM</span><span>+</span></div></div>
+<p class="ann">Single column, ~40rem wide. Two-column FAQ breaks reading order when items expand.</p></div>
+<div class="sec"><div class="lbl">Final CTA</div><div class="col"><div class="h1" style="width:60%"></div><div class="row" style="gap:6px;width:70%"><div class="fld" style="flex:1">EMAIL</div><div class="btnw">JOIN WAITLIST</div></div></div></div>
+<div class="sec" style="border-bottom:none;display:flex;justify-content:space-between"><div class="ph" style="width:80px;height:20px">LOGO</div><div class="row" style="gap:12px"><div class="ln" style="width:40px"></div><div class="ln" style="width:40px"></div><div class="ln" style="width:40px"></div></div></div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "go with <a class="dv-oid" href="#1c">1c</a> hero and <a class="dv-oid" href="#1g">1g</a> pricing, tighten the rest around them" · "show a thank-you / post-submit screen" · "wireframe the 320px hero variants side by side"</p>
+</section>
+
+<section class="dv-turn" id="t1h">
+<div class="dv-thd"><a class="dv-tid" href="#t1h">1</a><span class="dv-tname">Hero directions — the composition choice</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Split hero: copy left, visual right</div>
+<div class="dv-card" style="width:420px">
+<div class="sec" style="border-bottom:none">
+<div class="row" style="gap:14px">
+<div class="col" style="flex:1"><div class="eb"></div><div class="h1"></div><div class="h1" style="width:65%"></div><div class="ln"></div><div class="ln" style="width:70%"></div><div class="row" style="gap:5px"><div class="fld" style="flex:1">EMAIL</div><div class="btnw">JOIN</div></div><div class="ln" style="width:70%;height:6px"></div><div class="mini">see a live changelog →</div></div>
+<div class="ph" style="flex:1;min-height:200px">WIDGET SCREENSHOT<br>cropped at right edge</div>
+</div>
+<p class="ann"><b>Solves:</b> "what is this thing" and "should I sign up" in one screen — form and product proof both above the fold.<br><b>Tradeoff:</b> headline measure shrinks to ~45%, so the headline must be short; at 320 the visual drops below the form and the fold gets crowded.</p>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Stacked hero: copy + form full width, visual below as a full-bleed band</div>
+<div class="dv-card" style="width:420px">
+<div class="sec" style="border-bottom:none">
+<div class="col" style="align-items:flex-start"><div class="eb" style="width:26%"></div><div class="h1" style="width:88%"></div><div class="h1" style="width:60%"></div><div class="ln" style="width:72%"></div><div class="row" style="gap:5px;width:78%"><div class="fld" style="flex:1">EMAIL</div><div class="btnw">JOIN WAITLIST</div></div><div class="ln" style="width:45%;height:6px"></div></div>
+</div>
+<div style="border-top:2px dashed #cfcfcf;padding:0"><div class="ph" style="height:150px;border:none;border-bottom:1px solid #c4c4c4">FULL-BLEED PRODUCT VISUAL — top ~60% above the fold, deliberately cut</div></div>
+<p class="ann" style="padding:0 13px 13px"><b>Solves:</b> message clarity — long headline gets full measure, form is the only interactive thing in the upper viewport. Identical at 320 and 1440, so nothing to re-verify on mobile.<br><b>Tradeoff:</b> the product is half-seen above the fold; relies on the crop to earn the scroll.</p>
+</div>
+</div>
+
+<div class="dv-opt" id="1e">
+<div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Proof-forward hero: form first, proof block promoted beside it</div>
+<div class="dv-card" style="width:420px">
+<div class="sec" style="border-bottom:none">
+<div class="col" style="align-items:flex-start"><div class="eb" style="width:30%"></div><div class="h1" style="width:85%"></div><div class="ln" style="width:70%"></div></div>
+<div class="row" style="gap:12px;margin-top:11px;align-items:stretch">
+<div class="col" style="flex:1.1;border:2px solid #1a1a1a;padding:10px"><div class="mini">WAITLIST FORM</div><div class="fld">EMAIL</div><div class="btnw" style="justify-content:flex-start">JOIN THE WAITLIST</div><div class="ln" style="width:80%;height:6px"></div></div>
+<div class="col" style="flex:1;gap:8px"><div class="mini">PROOF STACK</div><div class="ph" style="height:26px">412 SIGNED UP · UPDATED WEEKLY</div><div class="ph" style="height:26px">BUILT BY — FOUNDER CREDENTIAL</div><div class="ph" style="height:26px">WORKS WITH — 3 STACK LOGOS</div></div>
+</div>
+<div class="ph" style="height:80px;margin-top:11px">PRODUCT VISUAL — reduced, below fold</div>
+<p class="ann"><b>Solves:</b> the pre-launch trust gap — with no testimonials, the adjacent proof sits where a testimonial row normally would, right next to the ask.<br><b>Tradeoff:</b> two blocks above the fold means two focal points; the product visual gets demoted and the Demo section has to carry it. Weakest at 320, where the proof stack pushes the form down.</p>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "merge <a class="dv-oid" href="#1d">1d</a>'s full-measure headline with <a class="dv-oid" href="#1e">1e</a>'s proof stack" · "show <a class="dv-oid" href="#1c">1c</a> at 320px" · "annotate the fold line on each"</p>
+</section>
+
+<section class="dv-turn" id="t1p">
+<div class="dv-thd"><a class="dv-tid" href="#t1p">1</a><span class="dv-tname">Pricing directions — single early-bird plan, three presentations</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1f">
+<div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Single card, bordered, left-aligned in the grid</div>
+<div class="dv-card" style="width:340px">
+<div class="sec" style="border-bottom:none">
+<div class="lbl">Pricing</div>
+<div class="h2" style="width:70%"></div>
+<div class="col" style="border:2px solid #1a1a1a;padding:12px;margin-top:11px">
+<div class="mini">EARLY BIRD · FIRST 100</div>
+<div class="row" style="align-items:baseline;gap:6px"><div class="h1" style="width:70px"></div><div class="ln" style="width:60px"></div></div>
+<div class="ln" style="width:85%"></div>
+<div class="col" style="gap:5px;margin-top:4px"><div class="chk">✓ INCLUDED</div><div class="chk">✓ INCLUDED</div><div class="chk">✓ INCLUDED</div><div class="chk">✓ INCLUDED</div></div>
+<div class="btnw" style="justify-content:flex-start;margin-top:6px">CLAIM EARLY PRICE</div>
+<div class="mini" style="margin-top:2px">no card required · price locked for life</div>
+</div>
+<p class="ann"><b>Solves:</b> reads unambiguously as one offer — the border makes it an object, and the price/inclusions/CTA stack in one scan.<br><b>Tradeoff:</b> a lone card in a wide grid can look like a tier with siblings missing; needs the "first 100" line to explain why there's only one.</p>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1g">
+<div class="dv-olabel"><a class="dv-oid" href="#1g">1g</a>Price as a statement row — no card, price left, inclusions right</div>
+<div class="dv-card" style="width:400px">
+<div class="sec" style="border-bottom:none">
+<div class="lbl">Pricing</div>
+<div style="border-top:2px solid #1a1a1a;border-bottom:2px solid #1a1a1a;padding:14px 0;margin-top:11px">
+<div class="row" style="gap:18px;align-items:flex-start">
+<div class="col" style="flex:1"><div class="mini">EARLY BIRD</div><div class="h1" style="width:80%"></div><div class="ln" style="width:70%"></div></div>
+<div class="col" style="flex:1;gap:5px"><div class="chk">✓ INCLUDED</div><div class="chk">✓ INCLUDED</div><div class="chk">✓ INCLUDED</div><div class="chk">✓ INCLUDED</div></div>
+</div>
+<div class="btnw" style="justify-content:flex-start;width:58%;margin-top:12px">CLAIM EARLY PRICE</div>
+</div>
+<p class="ann"><b>Solves:</b> the "missing tiers" problem — rules instead of a card, so there's no slot for a second plan. Also the lightest section on the page, which suits one number.<br><b>Tradeoff:</b> less visually anchored; if the CTA repeat above is close, hierarchy can flatten. Stacks to two rows at 320.</p>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1h">
+<div class="dv-olabel"><a class="dv-oid" href="#1h">1h</a>Pricing folded into the final CTA — one block, one action</div>
+<div class="dv-card" style="width:400px">
+<div class="sec" style="border-bottom:none">
+<div class="lbl">Pricing + Final CTA (merged)</div>
+<div class="col" style="border:2px solid #1a1a1a;padding:14px;margin-top:11px">
+<div class="h1" style="width:78%"></div>
+<div class="row" style="gap:14px;align-items:flex-start;margin-top:4px">
+<div class="col" style="flex:1"><div class="mini">EARLY BIRD PRICE</div><div class="h1" style="width:60%"></div><div class="ln" style="width:80%"></div></div>
+<div class="col" style="flex:1;gap:5px"><div class="chk">✓ INCLUDED</div><div class="chk">✓ INCLUDED</div><div class="chk">✓ INCLUDED</div></div>
+</div>
+<div class="row" style="gap:6px;margin-top:10px"><div class="fld" style="flex:1">EMAIL</div><div class="btnw">JOIN WAITLIST</div></div>
+<div class="ln" style="width:55%;height:6px"></div>
+</div>
+<p class="ann"><b>Solves:</b> the constraint directly — price, inclusions and the one form are a single primary CTA, so no viewport ever shows two. Shortens the page by a section.<br><b>Tradeoff:</b> FAQ then sits between the demo and the only closing block, and people who scroll to "pricing" land on a form. Needs pricing anchored in the nav. Two focal points inside one block at 320.</p>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "use <a class="dv-oid" href="#1g">1g</a> but keep the final CTA separate" · "show <a class="dv-oid" href="#1h">1h</a> at 320px" · "add the post-submit thank-you screen with the referral ask"</p>
+</section>
+</x-dc>
+</body>
+</html>

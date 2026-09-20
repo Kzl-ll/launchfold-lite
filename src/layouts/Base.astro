@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import { site } from '../site.config';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Seo from '../components/Seo.astro';
+import { getHero, getDemo, getPricing, getUi } from '../lib/landing';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name}: ${site.tagline}`;
+const pageDescription = description ?? site.tagline;
+
+const hero = await getHero();
+const demo = await getDemo();
+const pricing = await getPricing();
+const ui = await getUi();
+
+const navItems = [
+  demo ? { label: 'Demo', href: '/#demo' } : null,
+  { label: 'How it works', href: '/#how-it-works' },
+  pricing && !pricing.hidden ? { label: 'Pricing', href: '/#waitlist' } : null,
+  { label: 'FAQ', href: '/#faq' },
+].filter((item): item is { label: string; href: string } => item !== null);
+---
+
+<!doctype html>
+<html
+  lang={site.locale}
+  style={`--brand-accent:${site.brand.accent};--brand-accent-dark:${site.brand.accentDark};--radius:${site.brand.radius}`}
+>
+  <head>
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.dataset.theme = stored;
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <Seo title={pageTitle} description={pageDescription} noindex={noindex} pricing={pricing} />
+  </head>
+  <body>
+    {ui && <a href="#main-content" class="skip-link">{ui.skipToContent}</a>}
+    <Header navItems={navItems} primaryLabel={hero?.primaryCta.label ?? 'Join the waitlist'} ui={ui ?? { menu: 'Menu', toggleTheme: 'Toggle theme' }} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

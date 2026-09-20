@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { site } from '../../site.config';
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Props {
+  problem: CollectionEntry<'problem'>['data'];
+}
+
+const { problem } = Astro.props;
+const withoutLabel = problem.withoutLabel || `Without ${site.name}`;
+const withLabel = problem.withLabel || `With ${site.name}`;
+---
+
+<section class="py-section">
+  <Container>
+    <SectionHeading heading={problem.heading} />
+
+    <div class="mt-10 grid gap-8 md:grid-cols-2">
+      <div>
+        <h3 class="reveal label border-b border-border pb-3 text-sm text-muted">{withoutLabel}</h3>
+        <ul class="mt-4 space-y-3">
+          {
+            problem.pains.map((pain) => (
+              <li class="reveal flex items-start gap-3">
+                <span
+                  class="scroll-scrub mt-1 font-mono text-muted"
+                  data-scale-from="0.5"
+                  data-scale-to="1"
+                  aria-hidden="true"
+                >
+                  –
+                </span>
+                <span class="text-muted">{pain}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="reveal label border-b border-border pb-3 text-sm text-fg">{withLabel}</h3>
+        <ul class="mt-4 space-y-3">
+          {
+            problem.outcomes.map((outcome) => (
+              <li class="reveal flex items-start gap-3">
+                <span
+                  class="scroll-scrub mt-1 font-mono text-accent"
+                  data-scale-from="0.5"
+                  data-scale-to="1"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+                <span class="text-fg">{outcome}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </Container>
+</section>

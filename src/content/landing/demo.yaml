@@ -1,0 +1,7 @@
+heading: "See it inside a real app"
+subheading: "A look at how an update reaches your users, not just your changelog page."
+media:
+  type: "screenshot"
+  src: "shipnote-demo.svg"
+  alt: "Shipnote changelog widget open inside a demo SaaS dashboard, showing three recent updates"
+  caption: "Demo screenshot - Shipnote is a fictional product"

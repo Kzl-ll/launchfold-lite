@@ -1,0 +1,119 @@
+---
+import Container from './ui/Container.astro';
+import Button from './ui/Button.astro';
+import { site } from '../site.config';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  navItems: NavItem[];
+  primaryLabel: string;
+  ui: { menu: string; toggleTheme: string };
+}
+
+const { navItems, primaryLabel, ui } = Astro.props;
+---
+
+<header class="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur">
+  <Container class="flex h-16 items-center justify-between gap-4">
+    <a href="/" class="heading text-lg text-fg">{site.name}</a>
+
+    <nav class="hidden items-center gap-6 text-sm md:flex" aria-label="Primary">
+      {
+        navItems.map((item) => (
+          <a href={item.href} class="text-fg hover:text-accent">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button
+        id="theme-toggle"
+        type="button"
+        hidden
+        class="rounded-brand border border-border p-2 text-fg hover:text-accent"
+        aria-label={ui.toggleTheme}
+      >
+        <svg class="theme-icon-light h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+        </svg>
+        <svg class="theme-icon-dark h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+        </svg>
+      </button>
+
+      <Button href="/#waitlist" class="hidden sm:inline-flex">{primaryLabel}</Button>
+
+      <details class="relative md:hidden">
+        <summary
+          class="flex list-none items-center rounded-brand border border-border p-2 text-fg [&::-webkit-details-marker]:hidden"
+          aria-label={ui.menu}
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </summary>
+        <nav
+          class="absolute right-0 top-full mt-2 w-48 rounded-brand border border-border bg-surface p-4 shadow-lg"
+          aria-label="Primary"
+        >
+          {
+            navItems.map((item) => (
+              <a href={item.href} class="block py-2 text-sm text-fg hover:text-accent">
+                {item.label}
+              </a>
+            ))
+          }
+          <a href="/#waitlist" class="block py-2 text-sm font-semibold text-accent">
+            {primaryLabel}
+          </a>
+        </nav>
+      </details>
+    </div>
+  </Container>
+</header>
+
+<style>
+  html[data-theme="dark"] .theme-icon-light {
+    display: none;
+  }
+  html:not([data-theme="dark"]) .theme-icon-dark {
+    display: none;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      toggle.hidden = false;
+      toggle.addEventListener('click', function () {
+        var root = document.documentElement;
+        var current =
+          root.dataset.theme ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        var next = current === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem('theme', next);
+        } catch (e) {}
+      });
+    }
+
+    document.querySelectorAll('header details').forEach(function (details) {
+      var summary = details.querySelector('summary');
+      details.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && details.open) {
+          details.open = false;
+          if (summary) summary.focus();
+        }
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { resolveAsset } from '../../lib/images';
+
+interface Props {
+  founder?: CollectionEntry<'founder'>['data'];
+}
+
+const { founder } = Astro.props;
+const photoImage = founder?.photo ? resolveAsset(founder.photo, 'landing/founder.yaml › photo') : null;
+const initials = founder?.name
+  .split(' ')
+  .map((part) => part[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+---
+
+{
+  founder && (
+    <section class="py-section">
+      <Container>
+        <SectionHeading heading={founder.heading} />
+
+        <figure class="reveal mt-10 flex flex-col gap-6 border border-border bg-surface p-8 sm:flex-row sm:items-start">
+          {photoImage ? (
+            <Image
+              src={photoImage}
+              alt=""
+              class="scroll-scrub h-20 w-20 flex-none"
+              data-scale-from="0.85"
+              data-scale-to="1"
+            />
+          ) : (
+            <span
+              class="scroll-scrub flex h-20 w-20 flex-none items-center justify-center bg-fg font-mono text-lg text-bg"
+              data-scale-from="0.85"
+              data-scale-to="1"
+              aria-hidden="true"
+            >
+              {initials}
+            </span>
+          )}
+          <div>
+            <blockquote class="heading text-xl text-fg">{founder.note}</blockquote>
+            <figcaption class="mt-4 text-sm text-muted">
+              <span class="font-semibold text-fg">{founder.name}</span> · {founder.role}
+              {founder.links && founder.links.length > 0 && (
+                <span class="ml-2">
+                  {founder.links.map((link) => (
+                    <a href={link.href} class="text-accent hover:underline">
+                      {link.label}
+                    </a>
+                  ))}
+                </span>
+              )}
+            </figcaption>
+          </div>
+        </figure>
+      </Container>
+    </section>
+  )
+}

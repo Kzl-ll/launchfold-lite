@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import WaitlistForm from '../ui/WaitlistForm.astro';
+import { resolveAsset } from '../../lib/images';
+
+interface Props {
+  hero: CollectionEntry<'hero'>['data'];
+}
+
+const { hero } = Astro.props;
+const eyebrow = hero.eyebrow || hero.audience;
+const showProof = hero.proof.type !== 'none-yet' && hero.proof.text;
+const visualImage =
+  hero.visual.type === 'screenshot' ? resolveAsset(hero.visual.src, 'landing/hero.yaml › visual.src') : null;
+---
+
+<section class="py-section">
+  <div class="mx-auto grid max-w-[1120px] gap-10 px-6 lg:grid-cols-2 lg:items-center">
+    <div>
+      <p class="label text-sm text-accent">{eyebrow}</p>
+      <h1 class="heading mt-3 text-4xl md:text-5xl">{hero.headline}</h1>
+      <p class="mt-4 text-lg text-muted">{hero.subheadline}</p>
+
+      <WaitlistForm id="hero" buttonLabel={hero.primaryCta.label} source="hero" class="mt-8" />
+
+      {showProof && <p class="mt-3 text-sm text-muted">{hero.proof.text}</p>}
+
+      {
+        hero.secondaryCta && (
+          <p class="mt-6">
+            <a href={hero.secondaryCta.href} class="text-sm font-semibold text-accent hover:underline">
+              {hero.secondaryCta.label}
+            </a>
+          </p>
+        )
+      }
+    </div>
+
+    <div>
+      {
+        visualImage && (
+          <div class="overflow-hidden rounded-brand border border-border">
+            <Image
+              src={visualImage}
+              alt={hero.visual.alt}
+              loading="eager"
+              fetchpriority="high"
+              class="scroll-scrub w-full"
+            />
+          </div>
+        )
+      }
+      {hero.visual.caption && <p class="mt-2 text-center text-xs text-muted">{hero.visual.caption}</p>}
+    </div>
+  </div>
+</section>

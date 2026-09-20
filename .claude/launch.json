@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": ["compose", "up", "dev"],
+      "port": 4321
+    },
+    {
+      "name": "npm-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 4321
+    },
+    {
+      "name": "design-concepts",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4322", "--directory", "/tmp/claude-1000/-home-kanzul-Documents-Template-Website-launchfold-handoff/39ed95a6-8dfa-42d5-a5b8-3d1dc32a7260/scratchpad/design-concepts"],
+      "port": 4322
+    },
+    {
+      "name": "claude-design-review",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4323", "--directory", "/home/kanzul/Documents/Template Website/launchfold-handoff/Shipnote Waitlist Landing Design"],
+      "port": 4323
+    }
+  ]
+}

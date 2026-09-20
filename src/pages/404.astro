@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<Base title="Page not found" noindex>
+  <section class="py-section">
+    <div class="mx-auto max-w-xl px-6 text-center">
+      <h1 class="heading text-3xl md:text-4xl">Page not found</h1>
+      <p class="mt-4 text-lg text-muted">The page you're looking for doesn't exist or has moved.</p>
+      <Button href="/" class="mt-8">Back home</Button>
+    </div>
+  </section>
+</Base>
