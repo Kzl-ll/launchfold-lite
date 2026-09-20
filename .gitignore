@@ -27,8 +27,3 @@ pnpm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 
-# raw design-tool handoff exports (not part of the shipped site)
-Shipnote Waitlist Landing Design/
-Shipnote Waitlist Landing Design.zip
-Shipnote waitlist redesign/
-Shipnote waitlist redesign.zip
