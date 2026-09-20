@@ -7,7 +7,7 @@ Its differentiator is being **positioning-first**:
 - Content schemas force conversion copy (audience → pain → outcome → proof).
 - A **copy lint** runs before every build and fails on filler copy and missing essentials.
 
-A paid Pro version (growth mode: blog, changelog, alternatives/vs pages, CMS) will be built later in a separate private repo. **Do not add Pro features here.**
+A paid Pro version exists in a separate private repo (`launchfold-pro`): it currently adds a premium motion/interaction layer on top of this same foundation; growth-mode features (blog, changelog, alternatives/vs pages, CMS) are still on its roadmap, not built yet. **Do not add Pro features here** — that includes the motion pack (marquee, custom cursor, magnetic buttons, mask-reveal, hover-lift beyond what already exists below, circle-follow links) and anything that would push this repo's inline JS past its ≤2KB budget.
 
 Source documents (read the relevant parts before every step):
 - `PRD.md`: **what** to build and **why**. Personas, features (F1–F13), user stories, functional requirements (FR-…), non-functional requirements (NFR-…), acceptance criteria, out of scope. **PRD wins on conflicts.**

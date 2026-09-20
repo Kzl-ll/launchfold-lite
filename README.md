@@ -73,9 +73,10 @@ Static output, no adapter needed — works on Cloudflare Pages, Netlify, or Verc
 |---|---|---|
 | Waitlist landing page | ✅ | ✅ |
 | Positioning brief + copy lint | ✅ | ✅ |
+| Premium motion/interaction pack (marquee, custom cursor, magnetic buttons, mask-reveal) | – | ✅ |
 | Blog, changelog, alternatives/vs pages | – | 🔜 coming soon |
 | CMS-backed content | – | 🔜 coming soon |
-| Price | Free, MIT | _(link placeholder — Pro waitlist TBD)_ |
+| Price | Free, MIT | _(private/pre-sale — link placeholder, Pro waitlist TBD)_ |
 
 ## Demo content
 
